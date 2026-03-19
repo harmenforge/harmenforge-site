@@ -1,0 +1,11 @@
+{
+  "name": "harmen-forge-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:models": "ruby ./scripts/generate-model-manifest.rb",
+    "dev": "ruby -run -e httpd . -p 4173",
+    "build": "ruby ./scripts/generate-model-manifest.rb"
+  }
+}
