@@ -1,0 +1,559 @@
+@font-face {
+  font-family: "CoFo Raffine";
+  src: local("CoFo Raffine"), local("CoFoRaffine");
+  font-display: swap;
+}
+
+:root {
+  --text: #f7fbfb;
+  --muted: rgba(247, 251, 251, 0.72);
+  --shadow: rgba(0, 0, 0, 0.42);
+  --brand-size: clamp(1.45rem, 2.2vw, 2.65rem);
+  --body-font: "CoFo Raffine", "Times New Roman", Georgia, serif;
+  --ui-font: "CoFo Raffine", Arial, Helvetica, sans-serif;
+  --desktop-frame-shift: clamp(-2.75rem, -5vh, -1.75rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #080807;
+}
+
+body {
+  min-height: var(--viewport-height, 100vh);
+  margin: 0;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  color: var(--text);
+  font-family: var(--body-font);
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: block;
+  color: #f7fbfb;
+  background: #000;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0ms linear 800ms;
+}
+
+.site-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.site-loader__logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  color: #f7fbfb;
+  font-family: "CoFo Raffine", "Bodoni 72", Didot, "Times New Roman", Georgia, serif;
+  font-size: clamp(2.25rem, 5.7vw, 5rem);
+  font-weight: 500;
+  line-height: 0.72;
+  letter-spacing: 0;
+  text-transform: lowercase;
+  transform: translate(-50%, -50%);
+  animation: loader-logo-dock 1500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.site-loader__logo span:nth-child(2) {
+  margin-left: 1.45em;
+  margin-top: -0.04em;
+}
+
+@keyframes loader-logo-dock {
+  0%,
+  34% {
+    top: 50%;
+    left: 50%;
+    font-size: clamp(2.25rem, 5.7vw, 5rem);
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    top: clamp(1rem, 2.5vw, 1.7rem);
+    left: clamp(1rem, 2.5vw, 1.7rem);
+    font-size: var(--brand-size);
+    transform: translate(0, 0);
+  }
+}
+
+body::before,
+body::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  z-index: 1;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255, 255, 255, 0.14), transparent 0 18rem),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34), rgba(0, 0, 0, 0.2) 38%, rgba(0, 0, 0, 0.58));
+}
+
+body::after {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 100% 3px;
+  mix-blend-mode: overlay;
+  opacity: 0.35;
+}
+
+.background-media {
+  position: absolute;
+  inset: 0;
+  min-height: var(--viewport-height, 100vh);
+  display: block;
+  overflow: hidden;
+  background: #080807;
+  z-index: 0;
+}
+
+.background-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center 78%;
+  filter: saturate(0.92) contrast(1.06) brightness(0.86);
+  transform: scale(1.03);
+}
+
+.landing {
+  position: relative;
+  z-index: 2;
+  min-height: var(--viewport-height, 100svh);
+  display: block;
+  padding: clamp(1.2rem, 3vh, 2rem) clamp(1.25rem, 3vw, 2.5rem);
+  overflow: visible;
+}
+
+.brand {
+  position: absolute;
+  top: clamp(1rem, 2.5vw, 1.7rem);
+  left: clamp(1rem, 2.5vw, 1.7rem);
+  display: grid;
+  gap: 0;
+  color: var(--text);
+  font-family: "CoFo Raffine", "Bodoni 72", Didot, "Times New Roman", Georgia, serif;
+  font-size: var(--brand-size);
+  font-weight: 500;
+  line-height: 0.72;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: lowercase;
+  text-shadow: 0 0.08em 1.2em var(--shadow);
+}
+
+.brand span:nth-child(2) {
+  margin-left: 1.45em;
+  margin-top: -0.04em;
+}
+
+.statement {
+  width: min(37rem, calc(100vw - 2.5rem));
+  margin: var(--desktop-frame-shift) auto 0;
+  display: grid;
+  justify-items: center;
+  gap: clamp(0.75rem, 1.35vh, 1.15rem);
+  text-align: left;
+  text-shadow: 0 0.08em 1.8em var(--shadow);
+  animation: statement-in 900ms ease both;
+}
+
+.statement h1 {
+  width: max-content;
+  max-width: 68vw;
+  margin: 0 0 clamp(1rem, 3vh, 2rem);
+  font-size: clamp(3rem, 3.6vw, 4.45rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateY(clamp(4.75rem, 12vh, 7.25rem));
+}
+
+.statement__body {
+  width: 100%;
+  display: grid;
+  gap: clamp(0.7rem, 1.25vh, 0.95rem);
+  color: rgba(247, 251, 251, 0.9);
+  font-family: var(--ui-font);
+  font-size: clamp(0.92rem, 0.92vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.42;
+}
+
+.statement__body--above {
+  transform: translateY(clamp(4.25rem, 12vh, 7.25rem));
+}
+
+.statement__couch-gap {
+  width: 100%;
+  height: clamp(23.5rem, 49.5vh, 30.5rem);
+}
+
+.statement__body--below {
+  transform: translateY(clamp(1.25rem, 3vh, 2.25rem));
+  padding-bottom: clamp(3rem, 8vh, 5.5rem);
+}
+
+.statement__body p {
+  margin: 0;
+}
+
+.word-magnet__word {
+  display: inline-block;
+  transform: translate3d(0, 0, 0);
+  transition: transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.mobile-copy {
+  display: none;
+}
+
+.vinyl-player {
+  position: fixed;
+  right: clamp(1rem, 2.4vw, 1.8rem);
+  bottom: clamp(1rem, 2.4vw, 1.8rem);
+  z-index: 5;
+  width: clamp(5.15rem, 7.2vw, 6.5rem);
+  aspect-ratio: 1.18;
+  display: block;
+  padding: 0;
+  color: var(--text);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  overflow: visible;
+  filter: drop-shadow(0 0.75rem 1.25rem rgba(0, 0, 0, 0.36));
+}
+
+.vinyl-player__disc {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 78%;
+  aspect-ratio: 1;
+  display: block;
+  z-index: 1;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background:
+    radial-gradient(circle, #080808 0 5%, transparent 5.5%),
+    radial-gradient(circle at 36% 28%, rgba(255, 255, 255, 0.16), transparent 0 17%),
+    repeating-radial-gradient(circle, #050505 0 0.18rem, #202020 0.22rem 0.3rem, #090909 0.34rem 0.46rem);
+  box-shadow:
+    inset 0 0 0 0.06rem rgba(255, 255, 255, 0.2),
+    inset 0 0 1.15rem rgba(255, 255, 255, 0.08),
+    0 0 0 0.05rem rgba(255, 255, 255, 0.18);
+}
+
+.vinyl-player__label {
+  position: absolute;
+  inset: 35%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, #050505 0 10%, transparent 11%),
+    radial-gradient(circle, #e4d9c9 0 28%, #d52222 29% 100%);
+  box-shadow:
+    inset 0 0 0 0.06rem rgba(255, 255, 255, 0.25),
+    0 0 0.35rem rgba(0, 0, 0, 0.38);
+}
+
+.vinyl-player__highlight {
+  position: absolute;
+  inset: 9%;
+  border-radius: 50%;
+  background:
+    conic-gradient(from 20deg, transparent 0 16%, rgba(255, 255, 255, 0.23) 19%, transparent 30% 100%),
+    linear-gradient(135deg, transparent 0 48%, rgba(255, 255, 255, 0.12) 49% 51%, transparent 52% 100%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+.vinyl-player__tonearm {
+  position: absolute;
+  top: 6%;
+  right: 7%;
+  z-index: 2;
+  width: 0.62rem;
+  height: 0.62rem;
+  border: 0.1rem solid rgba(240, 238, 230, 0.95);
+  border-radius: 50%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent),
+    rgba(38, 38, 35, 0.86);
+  transform: rotate(-34deg);
+  transform-origin: 50% 50%;
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0.08rem 0.28rem rgba(0, 0, 0, 0.34);
+}
+
+.vinyl-player__tonearm::before {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 0.1rem;
+  height: 2.75rem;
+  content: "";
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(190, 188, 181, 0.92));
+  transform: translateX(-50%) rotate(16deg);
+  transform-origin: 50% 0;
+  box-shadow: 0.08rem 0.08rem 0.18rem rgba(0, 0, 0, 0.26);
+}
+
+.vinyl-player__tonearm::after {
+  position: absolute;
+  left: -0.42rem;
+  top: 3.02rem;
+  width: 0.82rem;
+  height: 0.36rem;
+  content: "";
+  border-radius: 0.35rem 0.35rem 0.2rem 0.2rem;
+  background: linear-gradient(180deg, #f3efe4, #cac5b8);
+  transform: rotate(-24deg);
+  box-shadow:
+    inset 0 -0.05rem 0.08rem rgba(0, 0, 0, 0.22),
+    0 0.12rem 0.24rem rgba(0, 0, 0, 0.26);
+}
+
+.vinyl-player__needle {
+  position: absolute;
+  left: -0.2rem;
+  top: 3.2rem;
+  width: 0.18rem;
+  height: 0.34rem;
+  content: "";
+  display: block;
+  z-index: 3;
+  border-radius: 999px;
+  background: #f8f5ea;
+  transform: rotate(35deg);
+  box-shadow: 0 0.08rem 0.16rem rgba(0, 0, 0, 0.28);
+}
+
+.vinyl-player.is-playing .vinyl-player__disc {
+  animation: vinyl-spin 2.8s linear infinite;
+}
+
+.vinyl-player.is-playing .vinyl-player__tonearm {
+  transform: rotate(10deg);
+}
+
+.vinyl-player.is-paused .vinyl-player__tonearm {
+  transform: rotate(-34deg);
+}
+
+.vinyl-player:focus-visible {
+  outline: 2px solid rgba(247, 251, 251, 0.75);
+  outline-offset: 0.25rem;
+}
+
+@keyframes vinyl-spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.statement__body em {
+  font-family: var(--body-font);
+  font-style: italic;
+}
+
+@keyframes statement-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  body::before,
+  body::after,
+  .background-media {
+    position: absolute;
+    min-height: 100%;
+  }
+
+  body::before {
+    background:
+      radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.16), transparent 0 14rem),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.16) 42%, rgba(0, 0, 0, 0.62));
+  }
+
+  .background-media img {
+    min-height: var(--viewport-height, 100vh);
+    object-position: 58% center;
+    transform: scale(1.02);
+  }
+
+  .landing {
+    min-height: var(--viewport-height, 100svh);
+    height: auto;
+    display: grid;
+    place-items: center;
+    padding: clamp(6.5rem, 10vw, 9rem) clamp(1.25rem, 3vw, 2.5rem) clamp(4rem, 7vw, 6rem);
+    overflow: visible;
+  }
+
+  .statement {
+    width: min(26rem, calc(100vw - 2rem));
+    margin: 0 auto;
+    gap: 1rem;
+  }
+
+  .brand {
+    font-size: clamp(1.15rem, 7vw, 1.7rem);
+  }
+
+  .site-loader__logo {
+    font-size: clamp(2rem, 14vw, 4rem);
+  }
+
+  @keyframes loader-logo-dock {
+    0%,
+    34% {
+      top: 50%;
+      left: 50%;
+      font-size: clamp(2rem, 14vw, 4rem);
+      transform: translate(-50%, -50%);
+    }
+
+    100% {
+      top: clamp(1rem, 2.5vw, 1.7rem);
+      left: clamp(1rem, 2.5vw, 1.7rem);
+      font-size: clamp(1.15rem, 7vw, 1.7rem);
+      transform: translate(0, 0);
+    }
+  }
+
+  .statement h1 {
+    max-width: calc(100vw - 1.5rem);
+    font-size: clamp(1.7rem, 8.8vw, 3rem);
+    margin-bottom: 1rem;
+    transform: translateY(clamp(2rem, 5vh, 3rem));
+  }
+
+  .statement__body {
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .statement__body--above {
+    transform: translateY(clamp(3.4rem, 8vh, 4.8rem));
+  }
+
+  .statement__couch-gap {
+    height: clamp(8rem, 20vh, 13rem);
+  }
+
+  .statement__body--below {
+    transform: translateY(clamp(2.4rem, 6vh, 3.25rem));
+  }
+
+  .desktop-copy {
+    display: none;
+  }
+
+  .mobile-copy {
+    display: block;
+  }
+
+  .word-magnet__word {
+    display: inline;
+    transform: none !important;
+    transition: none;
+    will-change: auto;
+  }
+
+  .vinyl-player {
+    width: 4.35rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+  }
+
+  .vinyl-player__tonearm {
+    top: 8%;
+    right: 8%;
+    width: 0.52rem;
+    height: 0.52rem;
+  }
+
+  .vinyl-player__tonearm::before {
+    height: 2.25rem;
+  }
+
+  .vinyl-player__tonearm::after {
+    top: 2.48rem;
+    width: 0.68rem;
+    height: 0.3rem;
+  }
+
+  .vinyl-player__needle {
+    top: 2.62rem;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 720px) {
+    .background-media img {
+      object-position: 63% center;
+    }
+
+    .statement__couch-gap {
+      height: clamp(12rem, 28vh, 17rem);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .background-media img {
+    transform: none;
+  }
+
+  .vinyl-player.is-playing .vinyl-player__disc {
+    animation: none;
+  }
+}
