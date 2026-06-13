@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Harmen Forge</title>
+  <rect width="512" height="512" fill="#000000"/>
+  <text
+    x="70"
+    y="242"
+    fill="#f7fbfb"
+    font-family="CoFo Raffine, Bodoni 72, Didot, Times New Roman, Georgia, serif"
+    font-size="120"
+    font-weight="500"
+    letter-spacing="-2"
+  >harmen</text>
+  <text
+    x="188"
+    y="336"
+    fill="#f7fbfb"
+    font-family="CoFo Raffine, Bodoni 72, Didot, Times New Roman, Georgia, serif"
+    font-size="120"
+    font-weight="500"
+    letter-spacing="-2"
+  >forge</text>
+</svg>
